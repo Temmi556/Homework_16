@@ -7,7 +7,7 @@ int main() {
     printf("\n=== ДЗ к 11 (подсчёт слов и букв) ===\n");
     count_words_and_letters();
 
-    printf("\n=== Лаба 14/16 (массивы и функции) ===\n");
+    printf("\n=== Лаба 14/16 (массивы и функции) ====\n");
     double *ptr_array;
     int size;
     int begin, end;
