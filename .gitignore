@@ -1,0 +1,54 @@
+# Компилируемые файлы и объектные файлы
+*.o
+*.obj
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.pdb
+
+# Исполняемые файлы (часто без расширения в Linux/macOS)
+/myprogram       # замените на имя вашего исполняемого файла или используйте обобщённо:
+# например, для Makefile-проектов часто используется:
+# /build/
+# /bin/
+# /obj/
+
+# Папки сборки (часто используются в проектах)
+/build/
+/bin/
+/obj/
+/dist/
+/deps/
+
+# Отладочные файлы
+*.dSYM/      # macOS отладочные символы
+*.stackdump
+
+# Visual Studio Code
+.vscode/
+# Но часто хочется сохранить некоторые файлы в .vscode/, например launch.json или settings.json.
+# Тогда лучше игнорировать избирательно:
+# .vscode/settings.json
+# .vscode/tasks.json
+# .vscode/launch.json
+# .vscode/extensions.json
+# А саму папку .vscode/ не игнорировать, или игнорировать только временные/локальные файлы:
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Временные и резервные файлы редакторов
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Логи и данные
+*.log
+*.tmp
