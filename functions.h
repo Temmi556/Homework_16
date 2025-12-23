@@ -27,7 +27,7 @@ double sum_elements(double *ptr_array, int begin, int end);
 int find_element(double *ptr_array, int n, double element);
 double max_begin_end(double *ptr_array, int begin, int end);
 
-// === ДЗ к 16 (по фото) ===
+// === ДЗ к 16 ===
 void generate_and_merge_arrays(void);
 
-#endif // FUNCTIONS_H
+#endif 
