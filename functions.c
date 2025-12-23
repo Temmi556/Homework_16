@@ -1,7 +1,6 @@
 #include "functions.h"
-#include <time.h> // для rand()
+#include <time.h> 
 
-// === Классная работа 11 ===
 float funct_1(float x){
     return x*x - pow(cos(2*PI*x),2);
 }
@@ -21,7 +20,7 @@ int task_1(){
 
     printf("|ИНДЕКС|ИСХОДНОЕ ЗНАЧЕНИЕ|НОВОЕ ЗНАЧЕНИЕ|\n");
     for (int i = 0; i < N; i++){
-        B[i] = A[i] * 2.0; // Удвоенный результат
+        B[i] = A[i] * 2.0; 
         c += B[i];
         printf("   %d         %.2f          %.2f\n", i, A[i], B[i]);
     }
@@ -133,11 +132,11 @@ double max_begin_end(double *ptr_array, int begin, int end){
     return max;
 }
 
-// === ДЗ к 16 (по фото) ===
+
 void generate_and_merge_arrays(void) {
     srand(time(NULL)); // инициализация генератора случайных чисел
 
-    int n = 5 + rand() % 11; // от 5 до 15
+    int n = 5 + rand() % 11; 
     int m = 5 + rand() % 11;
     int l = 5 + rand() % 11;
 
@@ -153,7 +152,7 @@ void generate_and_merge_arrays(void) {
     int d_size = n + m + l;
     double *d = malloc(d_size * sizeof(double));
 
-    // Чередование: d1=a0, d2=b0, d3=c0, d4=a1, d5=b1, d6=c1...
+    
     int idx_a = 0, idx_b = 0, idx_c = 0;
     for (int i = 0; i < d_size; i++) {
         if (i % 3 == 0 && idx_a < n) {
