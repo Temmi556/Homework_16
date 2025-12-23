@@ -154,19 +154,13 @@ void generate_and_merge_arrays(void) {
 
     
     int idx_a = 0, idx_b = 0, idx_c = 0;
-    for (int i = 0; i < d_size; i++) {
-        if (i % 3 == 0 && idx_a < n) {
-            d[i] = a[idx_a++];
-        } else if (i % 3 == 1 && idx_b < m) {
-            d[i] = b[idx_b++];
-        } else if (i % 3 == 2 && idx_c < l) {
-            d[i] = c[idx_c++];
-        } else {
-            // Если один из массивов закончился — продолжаем по другим
-            if (idx_a < n) d[i] = a[idx_a++];
-            else if (idx_b < m) d[i] = b[idx_b++];
-            else if (idx_c < l) d[i] = c[idx_c++];
-        }
+    int idx_d = 0;
+    
+    // Чередование: берём по одному элементу из каждого массива по очереди
+    while (idx_a < n || idx_b < m || idx_c < l) {
+        if (idx_a < n) d[idx_d++] = a[idx_a++];
+        if (idx_b < m) d[idx_d++] = b[idx_b++];
+        if (idx_c < l) d[idx_d++] = c[idx_c++];
     }
 
     // Вывод массивов
