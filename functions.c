@@ -241,7 +241,7 @@ void easy_sort(int *ptarr, int n){
 }
 int * full_array(int *ptarr, int n){
     // Заполнение массива случайными числами от 0 до 100
-    srand(time(NULL));
+    srand(time(NULL)); 
     for (int i = 0; i < n; i++){
         ptarr[i] = rand() % 101; // случайное число от 0 до 100
     }
@@ -312,31 +312,53 @@ void lab_17(void) {
 }
 void lab_17_experiment(void){
     int size;
-    int t;
+    clock_t t;
+    double total_time;
+    int repeats = 10;
 
-    t = clock();
     printf("Введите размер массива для эксперимента: ");
     scanf("%d", &size);
-    int *ptarr_1 = (int *)malloc(size * sizeof(int));
-    full_array(ptarr_1, size);
-    sort_bubble(ptarr_1, size);
-    t = clock() - t;
-    printf("Время сортировки пузырьком для массива из %d элементов: %f секунд\n", size, ((double)t)/CLOCKS_PER_SEC);
-    free(ptarr_1);
+    printf("Количество повторений: %d\n\n", repeats);
 
-    t = clock();
-    int *ptarr_2 = (int *)malloc(size * sizeof(int));
-    full_array(ptarr_2, size);
-    easy_sort(ptarr_2, size);
-    t = clock() - t;
-    printf("Время сортировки простым выбором для массива из %d элементов: %f секунд\n", size, ((double)t)/CLOCKS_PER_SEC);
-    free(ptarr_2);
-    t = clock();
-    int *ptarr_3 = (int *)malloc(size * sizeof(int));
-    full_array(ptarr_3, size);
-    sort_bubble_flag(ptarr_3, size);
-    t = clock() - t;
-    printf("Время сортировки пузырьком с флагом для массива из %d элементов: %f секунд\n", size, ((double)t)/CLOCKS_PER_SEC);
-    free(ptarr_3);
+    // === Сортировка пузырьком ===
+    total_time = 0;
+    for (int r = 0; r < repeats; r++) {
+        int *ptarr_1 = (int *)malloc(size * sizeof(int));
+        full_array(ptarr_1, size);
+        t = clock();
+        sort_bubble(ptarr_1, size);
+        t = clock() - t;
+        total_time += ((double)t) / CLOCKS_PER_SEC;
+        free(ptarr_1);
+    }
+    printf("Сортировка пузырьком для %d элементов:\n", size);
+    printf("  Среднее время за %d повторений: %.8f секунд\n\n", repeats, total_time / repeats);
 
+    // === Сортировка простым выбором ===
+    total_time = 0;
+    for (int r = 0; r < repeats; r++) {
+        int *ptarr_2 = (int *)malloc(size * sizeof(int));
+        full_array(ptarr_2, size);
+        t = clock();
+        easy_sort(ptarr_2, size);
+        t = clock() - t;
+        total_time += ((double)t) / CLOCKS_PER_SEC;
+        free(ptarr_2);
+    }
+    printf("Сортировка простым выбором для %d элементов:\n", size);
+    printf("  Среднее время за %d повторений: %.8f секунд\n\n", repeats, total_time / repeats);
+
+    // === Сортировка пузырьком с флагом ===
+    total_time = 0;
+    for (int r = 0; r < repeats; r++) {
+        int *ptarr_3 = (int *)malloc(size * sizeof(int));
+        full_array(ptarr_3, size);
+        t = clock();
+        sort_bubble_flag(ptarr_3, size);
+        t = clock() - t;
+        total_time += ((double)t) / CLOCKS_PER_SEC;
+        free(ptarr_3);
+    }
+    printf("Сортировка пузырьком с флагом для %d элементов:\n", size);
+    printf("  Среднее время за %d повторений: %.8f секунд\n\n", repeats, total_time / repeats);
 }
