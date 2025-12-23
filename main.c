@@ -1,6 +1,7 @@
 #include "functions.h"
 
 int main() {
+/*
     printf("=== Классная работа 11 ===\n");
     task_2(); 
     printf("\n=== ДЗ к 11 (элементы между нулями) ===\n");
@@ -44,9 +45,10 @@ int main() {
 
     printf("\n=== ДЗ к 16 (генерация и чередование массивов) ===\n");
     generate_and_merge_arrays();
-
+*/
     printf("\n=== Лаба 17 ===\n");
     lab_17();
-
+    printf("\n=== Лаба 17 (экспериментальная часть) ===\n");
+    lab_17_experiment();
     return 0;
 }

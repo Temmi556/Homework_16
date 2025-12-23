@@ -32,5 +32,10 @@ void generate_and_merge_arrays(void);
 
 // === Лаба 17 ===
 void lab_17(void);
-
+void lab_17_experiment(void); // Экспериментальная часть Лабы 17
+void sort_bubble(int *ptarr, int n); // Пузырьковая сортировка
+void sort_bubble_flag(int *ptarr, int n); // Пузырьковая сортировка с флагом
+void easy_sort(int *ptarr, int n); // Сортировка простым выбором
+int * full_array(int *ptarr, int n); //Функция заполнения массива
+int putt_array(int *,int); // Функция вывода массива
 #endif 

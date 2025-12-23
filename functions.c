@@ -212,7 +212,131 @@ void generate_and_merge_arrays(void) {
 }
 
 // === Лаба 17 ===
+void sort_bubble(int *ptarr,int n ){
+    int temp;
+    for (int i = 0; i < n-1; i++){
+        for (int j = 0; j < n-i-1; j++){
+            if (ptarr[j] > ptarr[j+1]){
+                temp = ptarr[j];
+                ptarr[j] = ptarr[j+1];
+                ptarr[j+1] = temp;
+            }
+        }
+    }
+}
+void easy_sort(int *ptarr, int n){
+    int imax, temp; // индекс максимального элемента
+    for (int i = 0; i < n-1; i++){ // проходим по всему массиву
+        imax = i;
+        for (int j = i+1; j < n; j++){ // ищем максимальный элемент в неотсортированной части массива
+            if (ptarr[j] > ptarr[imax]){
+                imax = j;
+            }
+        }
+        // меняем местами найденный максимальный элемент с первым элементом неотсортированной части
+        temp = ptarr[i];
+        ptarr[i] = ptarr[imax];
+        ptarr[imax] = temp;
+    }
+}
+int * full_array(int *ptarr, int n){
+    // Заполнение массива случайными числами от 0 до 100
+    srand(time(NULL));
+    for (int i = 0; i < n; i++){
+        ptarr[i] = rand() % 101; // случайное число от 0 до 100
+    }
+    return ptarr;
+}
+
+int putt_array(int *ptarr, int n){
+    printf("Элементы массива:\n");
+    for (int i = 0; i < n; i++){
+        printf("%d ", ptarr[i]);
+    }
+    printf("\n");
+    return 0;
+}
+void sort_bubble_flag(int *ptarr, int n){
+    int temp;
+    int flag;
+    for (int i = 0; i < n-1; i++){
+        flag = 0; // флаг для проверки, были ли обмены
+        for (int j = 0; j < n-i-1; j++){
+            if (ptarr[j] > ptarr[j+1]){
+                temp = ptarr[j];
+                ptarr[j] = ptarr[j+1];
+                ptarr[j+1] = temp;
+                flag = 1; // обмен произошёл
+            }
+        }
+        if (flag == 0){
+            break; // массив уже отсортирован
+        }
+    }
+}
 void lab_17(void) {
     printf("\n=== Лаба 17 ===\n");
+    int n;
+    printf("\n=== Сортировка пузырьком ===\n");
+    printf("Введите размер массива : ");
+    scanf("%d", &n);
+    int *ptarr = (int *)malloc(n * sizeof(int)); // Выделение памяти под массив
+    printf("Введите %d элементов массива:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &ptarr[i]);
+    }
+    sort_bubble(ptarr, n);
+    printf("Отсортированный массив:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", ptarr[i]);    
+        
+    }
+    printf("\n");
+    printf("\n=== Сортировка простым выбором ===\n");
+    printf("Введите размер массива : ");
+    scanf("%d", &n);
+    ptarr = (int *)realloc(ptarr, n * sizeof(int)); 
+    printf("Введите %d элементов массива:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &ptarr[i]);
+    }
+    easy_sort(ptarr, n);
+    printf("Отсортированный массив:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", ptarr[i]);
+    }
+    printf("\n");
     
+
+    
+}
+void lab_17_experiment(void){
+    int size;
+    int t;
+
+    t = clock();
+    printf("Введите размер массива для эксперимента: ");
+    scanf("%d", &size);
+    int *ptarr_1 = (int *)malloc(size * sizeof(int));
+    full_array(ptarr_1, size);
+    sort_bubble(ptarr_1, size);
+    t = clock() - t;
+    printf("Время сортировки пузырьком для массива из %d элементов: %f секунд\n", size, ((double)t)/CLOCKS_PER_SEC);
+    free(ptarr_1);
+
+    t = clock();
+    int *ptarr_2 = (int *)malloc(size * sizeof(int));
+    full_array(ptarr_2, size);
+    easy_sort(ptarr_2, size);
+    t = clock() - t;
+    printf("Время сортировки простым выбором для массива из %d элементов: %f секунд\n", size, ((double)t)/CLOCKS_PER_SEC);
+    free(ptarr_2);
+    t = clock();
+    int *ptarr_3 = (int *)malloc(size * sizeof(int));
+    full_array(ptarr_3, size);
+    sort_bubble_flag(ptarr_3, size);
+    t = clock() - t;
+    printf("Время сортировки пузырьком с флагом для массива из %d элементов: %f секунд\n", size, ((double)t)/CLOCKS_PER_SEC);
+    free(ptarr_3);
+
 }
