@@ -3,8 +3,8 @@
 int main() {
     printf("=== Классная работа 11 ===\n");
     task_2(); 
-    printf("\n=== ДЗ к 11 (подсчёт слов и букв) ===\n");
-    count_words_and_letters();
+    printf("\n=== ДЗ к 11 (элементы между нулями) ===\n");
+    count_between_zeros();
 
     printf("\n=== Лаба 14/16 (массивы и функции) ====\n");
     double *ptr_array;
@@ -44,6 +44,9 @@ int main() {
 
     printf("\n=== ДЗ к 16 (генерация и чередование массивов) ===\n");
     generate_and_merge_arrays();
+
+    printf("\n=== Лаба 17 ===\n");
+    lab_17();
 
     return 0;
 }

@@ -16,7 +16,7 @@ int task_1(void);
 int task_2(void);
 
 // === ДЗ к 11 ===
-void count_words_and_letters(void);
+void count_between_zeros(void);
 
 // === Лабы 14, 16 и ДЗ к ним ===
 double f(double x);
@@ -29,5 +29,8 @@ double max_begin_end(double *ptr_array, int begin, int end);
 
 // === ДЗ к 16 ===
 void generate_and_merge_arrays(void);
+
+// === Лаба 17 ===
+void lab_17(void);
 
 #endif 

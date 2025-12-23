@@ -48,32 +48,57 @@ int task_2(){
 }
 
 // === ДЗ к 11 ===
-void count_words_and_letters(void) {
-    setlocale(LC_ALL, "");
-    
-    wint_t c;
-    int letters = 0;
-    int words = 0;
-    int in_word = 0;
+// Количество элементов массива, расположенных между первым и последним нулевыми элементами
+void count_between_zeros(void) {
+    int n;
+    printf("Введите размер массива > ");
+    scanf("%d", &n);
 
-    wprintf(L"Введите строку:\n");
+    int *arr = (int *)malloc(n * sizeof(int));
 
-    while ((c = getwchar()) != L'\n') {
-        if (c != L' ' && c != L'\t') {
-            letters++;
-            if (!in_word) {
-                words++;
-                in_word = 1;
-            }
-        } else {
-            in_word = 0;
+    printf("Введите %d элементов массива:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Поиск первого нулевого элемента
+    int first_zero = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            first_zero = i;
+            break;
         }
     }
 
-    if (words > 0)
-        wprintf(L"Средняя длина слова = %.2f\n", (float)letters / words);
-    else
-        wprintf(L"Слова отсутствуют\n");
+    // Поиск последнего нулевого элемента
+    int last_zero = -1;
+    for (int i = n - 1; i >= 0; i--) {
+        if (arr[i] == 0) {
+            last_zero = i;
+            break;
+        }
+    }
+
+    // Вывод массива
+    printf("Массив: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Подсчёт элементов между нулями
+    if (first_zero == -1 || last_zero == -1) {
+        printf("В массиве нет нулевых элементов\n");
+    } else if (first_zero == last_zero) {
+        printf("В массиве только один нулевой элемент (индекс %d)\n", first_zero);
+        printf("Количество элементов между нулями: 0\n");
+    } else {
+        int count = last_zero - first_zero - 1;
+        printf("Первый ноль на индексе %d, последний на индексе %d\n", first_zero, last_zero);
+        printf("Количество элементов между нулями: %d\n", count);
+    }
+
+    free(arr);
 }
 
 // === Лабы 14, 16 и ДЗ к ним ===
@@ -136,9 +161,9 @@ double max_begin_end(double *ptr_array, int begin, int end){
 void generate_and_merge_arrays(void) {
     srand(time(NULL)); // инициализация генератора случайных чисел
 
-    int n = 5 + rand() % 11; 
-    int m = 5 + rand() % 11;
-    int l = 5 + rand() % 11;
+    int n = 10 + rand() % 41; // от 10 до 50
+    int m = 10 + rand() % 41;
+    int l = 10 + rand() % 41;
 
     double *a = malloc(n * sizeof(double));
     double *b = malloc(m * sizeof(double));
@@ -184,4 +209,10 @@ void generate_and_merge_arrays(void) {
     free(b);
     free(c);
     free(d);
+}
+
+// === Лаба 17 ===
+void lab_17(void) {
+    printf("\n=== Лаба 17 ===\n");
+    
 }
